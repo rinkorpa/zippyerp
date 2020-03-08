@@ -14,7 +14,7 @@
 
 
 
-    <link rel="stylesheet" href="/assets/css/toastr.min.css">
+    
     <link rel="stylesheet" href="/assets/css/select2.css">
     <link rel="stylesheet" href="/assets/css/select2-bootstrap.css">
     <link rel="stylesheet" href="/assets/css/app.css">
@@ -25,9 +25,10 @@
 
     <script src="/vendor/leon-mbs/zippy/assets/js/zippy-bundle.min.js" type="text/javascript"></script>
 
-    <script src="/assets/js/toastr.min.js" type="text/javascript"></script>
+    
     <script src="/assets/js/select2.js" type="text/javascript"></script>
     <script src="/assets/js/app.js" type="text/javascript"></script>
+    <script src="/assets/js/printThis.js" type="text/javascript"></script>
 
     <script src="/assets/js/adminlte.js" type="text/javascript"></script>
 
@@ -340,6 +341,35 @@
             <div class="content-wrapper mb-4"  >
                 <!-- Main content -->
                 <section class="content">
+                   
+               <div class="row justify-content-center mt-2 mb-1">
+                        <div class="col-12 col-md-10 col-lg-9 col-xl-8   ">
+
+                            {{#alerterror}}
+                            <div class="alert alert-danger" role="alert">
+                                {{{alerterror}}}
+                            </div>
+                            {{/alerterror}}
+                            {{#alertwarning}}
+                            <div class="alert alert-warning" role="alert">
+                                {{{alertwarning}}}
+                            </div>
+                            {{/alertwarning}}
+                            {{#alertinfo}}
+                            <div class="alert alert-info" role="alert">
+                                {{{alertinfo}}}
+                            </div>
+                            {{/alertinfo}}
+                            {{#alertsuccess}}
+                            <div class="alert alert-success" role="alert">
+                                {{{alertsuccess}}}
+                            </div>
+                            {{/alertsuccess}}
+                        </div>
+                    </div>                   
+                   
+                   
+                   
                     <div class="row">
                         <div class="col-12   ">
                             {{#defoptions}}
@@ -368,23 +398,7 @@
 
 
         <script>
-toastr.options = {
-    "closeButton": true,
-    "debug": false,
-    "newestOnTop": false,
-    "progressBar": false,
-    "positionClass": "toast-top-center",
-    "preventDuplicates": false,
-    "onclick": null,
-    "showDuration": "300",
-    "hideDuration": "1000",
-    "timeOut": "5000",
-    "extendedTimeOut": "1000",
-    "showEasing": "swing",
-    "hideEasing": "linear",
-    "showMethod": "fadeIn",
-    "hideMethod": "fadeOut"
-};
+ 
 
 $(function () {
     $('[data-toggle="popover"]').popover()

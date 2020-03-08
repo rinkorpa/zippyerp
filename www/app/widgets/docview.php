@@ -11,6 +11,7 @@ use Zippy\Html\Form\TextArea;
 use Zippy\Html\Form\TextInput;
 use Zippy\Html\Label;
 use Zippy\Html\Link\ClickLink;
+use Zippy\Html\Link\BookmarkableLink;
 use Zippy\Html\Link\RedirectLink;
 use App\Entity\Doc\Document;
 use App\Helper as H;
@@ -33,8 +34,9 @@ class DocView extends \Zippy\Html\PageFragment
     public function __construct($id) {
         parent::__construct($id);
 
-        $this->add(new RedirectLink('print', ""));
-        $this->add(new RedirectLink('html', ""))->setVisible(false);
+        $this->add(new BookmarkableLink('print', ""));
+
+     
         $this->add(new RedirectLink('word', ""));
         $this->add(new RedirectLink('excel', ""));
         $this->add(new RedirectLink('pdf', ""));
@@ -84,8 +86,6 @@ class DocView extends \Zippy\Html\PageFragment
 
         $this->print->pagename = $reportpage;
         $this->print->params = array('print', $doc->document_id);
-        $this->html->pagename = $reportpage;
-        $this->html->params = array('html', $doc->document_id);
         $this->word->pagename = $reportpage;
         $this->word->params = array('doc', $doc->document_id);
         $this->excel->pagename = $reportpage;

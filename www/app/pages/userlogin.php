@@ -13,7 +13,7 @@ use \Zippy\Html\Label;
 class UserLogin extends \Zippy\Html\WebPage
 {
 
-    public $_errormsg;
+ 
 
     public function __construct() {
         parent::__construct();
@@ -25,6 +25,7 @@ class UserLogin extends \Zippy\Html\WebPage
         $form->onSubmit($this, 'onsubmit');
 
         $this->add($form);
+        $this->setError('');        
     }
 
     public function onsubmit($sender) {
@@ -78,15 +79,11 @@ class UserLogin extends \Zippy\Html\WebPage
     }
 
     public function setError($msg) {
-        $this->_errormsg = $msg;
+
+
+        $this->_tvars['alerterror'] = $msg;
     }
 
-    protected function afterRender() {
-
-        if (strlen($this->_errormsg) > 0)
-            App::$app->getResponse()->addJavaScript("toastr.error('{$this->_errormsg}')        ", true);
-
-        $this->setError('');
-    }
+ 
 
 }

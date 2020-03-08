@@ -115,22 +115,31 @@ class Base extends \Zippy\Html\WebPage
         $user = System::getUser();
         $this->_tvars['notcnt'] = \App\Entity\Notify::isNotify($user->user_id);
         
-  
+        $this->_tvars['alerterror'] = "";
+        $this->_tvars['alertwarning'] = "";
+        $this->_tvars['alertsuccess'] = "";
+        $this->_tvars['alertinfo'] = "";
+
+        if (strlen(System::getErrorMsg()) > 0) {
+            $this->_tvars['alerterror'] = System::getErrorMsg();
+            $this->goAnkor('');
+        }
+        if (strlen(System::getWarnMsg()) > 0) {
+            $this->_tvars['alertwarning'] = System::getWarnMsg();
+            $this->goAnkor('');
+        }
+        if (strlen(System::getSuccesMsg()) > 0) {
+            $this->_tvars['alertsuccess'] = System::getSuccesMsg();
+            $this->goAnkor('');
+        }
+        if (strlen(System::getInfoMsg()) > 0) {
+            $this->_tvars['alertinfo'] = System::getInfoMsg();
+            $this->goAnkor('');
+        }  
     }      
    
 
     protected function afterRender() {
-        if (strlen(System::getErrorMsg()) > 0)
-            App::$app->getResponse()->addJavaScript("toastr.error('" . System::getErrorMsg() . "')        ", true);
-        if (strlen(System::getWarnMsg()) > 0)
-            App::$app->getResponse()->addJavaScript("toastr.warning('" . System::getWarnMsg() . "')        ", true);
-        if (strlen(System::getSuccesMsg()) > 0)
-            App::$app->getResponse()->addJavaScript("toastr.success('" . System::getSuccesMsg() . "')        ", true);
-        if (strlen(System::getInfoMsg()) > 0)
-            App::$app->getResponse()->addJavaScript("toastr.info('" . System::getInfoMsg() . "')        ", true);
-
-
-
         $this->setError('');
         $this->setSuccess('');
 
